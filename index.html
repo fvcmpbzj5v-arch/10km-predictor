@@ -3581,60 +3581,46 @@ function calculateEasyPaceRange(ltPace){
 
 }
 
-function calculateMarathonPace(
-    ltPace,
-    vdot,
-    speedLevel,
-    enduranceLevel
-){
+function calculateCVPace(vdot){
 
     if(
-        ltPace === null ||
-        !Number.isFinite(ltPace)
+        vdot === null ||
+        !Number.isFinite(vdot) ||
+        vdot <= 0
     ){
         return null;
     }
 
-    let addSeconds;
+    const cvVO2 =
+    vdot * 0.92;
 
-    if(vdot < 40){
+    const a = 0.000104;
+    const b = 0.182258;
+    const c = -4.60 - cvVO2;
 
-        addSeconds = 30;
+    const discriminant =
+    b * b -
+    4 * a * c;
 
-    }else if(vdot < 45){
-
-        addSeconds = 27;
-
-    }else if(vdot < 50){
-
-        addSeconds = 24;
-
-    }else if(vdot < 55){
-
-        addSeconds = 21;
-
-    }else if(vdot < 60){
-
-        addSeconds = 18;
-
-    }else{
-
-        addSeconds = 15;
-
+    if(discriminant < 0){
+        return null;
     }
 
-    if(speedLevel > enduranceLevel){
+    const velocity =
+    (
+        -b +
+        Math.sqrt(discriminant)
+    ) /
+    (2 * a);
 
-        addSeconds += 1.5;
-
-    }else if(speedLevel < enduranceLevel){
-
-        addSeconds -= 1.5;
-
+    if(
+        !Number.isFinite(velocity) ||
+        velocity <= 0
+    ){
+        return null;
     }
 
-    return ltPace + addSeconds;
-
+    return 60000 / velocity;
 }
 
 predictButton.addEventListener(
@@ -3928,12 +3914,9 @@ getVDOTRank(averageVDOT);
     + "〜" +
     formatPace(easyPace.slow);
 
-const marathonPace =
-calculateMarathonPace(
-    ltPace,
-    averageVDOT,
-    speedLevel,
-    enduranceLevel
+const cvPace =
+calculateCVPace(
+    averageVDOT
 );
 
 console.log(
@@ -3948,7 +3931,7 @@ console.log(
 );
 
 marathonPaceValue.textContent =
-formatPace(marathonPace);
+formatPace(cvPace);
 
 }else{
 
