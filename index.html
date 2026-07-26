@@ -2510,17 +2510,32 @@ document.getElementById("predictedTime");
 const predictedPace =
 document.getElementById("predictedPace");
 
+const lap1km =
+document.getElementById("lap1km");
+
+const lap2km =
+document.getElementById("lap2km");
+
+const lap3km =
+document.getElementById("lap3km");
+
+const lap4km =
+document.getElementById("lap4km");
+
 const lap5km =
 document.getElementById("lap5km");
 
-const lap10km =
-document.getElementById("lap10km");
+const lap6km =
+document.getElementById("lap6km");
 
-const lap15km =
-document.getElementById("lap15km");
+const lap7km =
+document.getElementById("lap7km");
 
-const lap20km =
-document.getElementById("lap20km");
+const lap8km =
+document.getElementById("lap8km");
+
+const lap9km =
+document.getElementById("lap9km");
 
 const lapFinish =
 document.getElementById("lapFinish");
@@ -2979,6 +2994,24 @@ function formatRaceTime(totalSeconds){
         String(hours) +
         ":" +
         String(minutes).padStart(2,"0") +
+        ":" +
+        String(seconds).padStart(2,"0")
+    );
+}
+
+function formatLapTime(totalSeconds){
+
+    totalSeconds =
+    Math.round(totalSeconds);
+
+    const minutes =
+    Math.floor(totalSeconds / 60);
+
+    const seconds =
+    totalSeconds % 60;
+
+    return (
+        String(minutes) +
         ":" +
         String(seconds).padStart(2,"0")
     );
@@ -3815,30 +3848,35 @@ finalPrediction /
     "平均ペース " +
     formatPace(pace);
     
-    lap5km.textContent =
-formatRaceTime(
-    pace * 5
-);
+    lap1km.textContent =
+formatLapTime(pace * 1);
 
-lap10km.textContent =
-formatRaceTime(
-    pace * 10
-);
+lap2km.textContent =
+formatLapTime(pace * 2);
 
-lap15km.textContent =
-formatRaceTime(
-    pace * 15
-);
+lap3km.textContent =
+formatLapTime(pace * 3);
 
-lap20km.textContent =
-formatRaceTime(
-    pace * 20
-);
+lap4km.textContent =
+formatLapTime(pace * 4);
+
+lap5km.textContent =
+formatLapTime(pace * 5);
+
+lap6km.textContent =
+formatLapTime(pace * 6);
+
+lap7km.textContent =
+formatLapTime(pace * 7);
+
+lap8km.textContent =
+formatLapTime(pace * 8);
+
+lap9km.textContent =
+formatLapTime(pace * 9);
 
 lapFinish.textContent =
-formatRaceTime(
-    finalPrediction
-);
+formatRaceTime(finalPrediction);
 
 lapAveragePace.textContent =
 formatPace(pace);
