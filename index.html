@@ -2186,7 +2186,7 @@ CVペース
 
 <p
 class="analysis-card-value"
-id="marathonPaceValue">
+id="cvPaceValue">
 --
 </p>
 
@@ -2596,8 +2596,8 @@ document.getElementById("vdotRank");
 const easyPaceValue =
 document.getElementById("easyPaceValue");
 
-const marathonPaceValue =
-document.getElementById("marathonPaceValue");
+const cvPaceValue =
+document.getElementById("cvPaceValue");
 
 const trainingMenuSection =
 document.getElementById(
@@ -3930,7 +3930,7 @@ console.log(
     ltPace - cvPace
 );
 
-marathonPaceValue.textContent =
+cvPaceValue.textContent =
 formatPace(cvPace);
 
 }else{
@@ -3941,7 +3941,7 @@ formatPace(cvPace);
     easyPaceValue.textContent =
     "--";
 
-marathonPaceValue.textContent =
+cvPaceValue.textContent =
 "--";
 
 }
@@ -3960,7 +3960,7 @@ marathonPaceValue.textContent =
     easyPaceValue.textContent =
     "--";
 
-    marathonPaceValue.textContent =
+    cvPaceValue.textContent =
     "--";
 
     vdotValue.textContent =
