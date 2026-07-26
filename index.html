@@ -2508,7 +2508,7 @@ class="nav-item">
 </div>
 
 <script>
-const halfDistance = 21097.5;
+const targetDistance = 10000;
 
 const showRecord2Button =
 document.getElementById("showRecord2");
@@ -3079,12 +3079,12 @@ function getVisibleRecords(){
 function calculatePrediction(record){
 
     const basePrediction =
-    record.totalSeconds *
-    Math.pow(
-        halfDistance /
-        record.distance,
-        1.06
-    );
+record.totalSeconds *
+Math.pow(
+    targetDistance /
+    record.distance,
+    1.06
+);
 
     return basePrediction;
 }
@@ -3832,8 +3832,8 @@ document.querySelector(
     formatRaceTime(finalPrediction);
 
     const pace =
-    finalPrediction /
-    (halfDistance / 1000);
+finalPrediction /
+(targetDistance / 1000);
 
    predictedPace.textContent =
     "平均ペース " +
